@@ -4,11 +4,20 @@
 Writes the entry text to /output/entry.txt, the one text the
 competition's judge compares. Standard library only, no network,
 deterministic: every run writes the same bytes.
+
+The entry must be between 1 and 140 characters, so main() checks
+the length before writing anything; a bad length fails loudly
+instead of producing an invalid submission. The output path is
+/output/entry.txt when that directory exists (the competition
+sandbox), and falls back to output/ next to this file for local
+runs, so the same bytes land in the same file either way.
 """
 
 import os
 from pathlib import Path
 
+# "buzzlusion" blends buzz + illusion: a pocket vibration that was
+# never there, only felt — the word says what the sensation is.
 ENTRY = (
     "buzzlusion (n.) \u2014 the phantom buzz in your pocket "
     "that makes you check a phone that never vibrated."
